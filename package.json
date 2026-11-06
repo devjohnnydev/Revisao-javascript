@@ -1,0 +1,16 @@
+{
+  "name": "revisao-ds-senai-morvan",
+  "version": "2.0.0",
+  "description": "Revisão de Semestre (HTML, CSS, JavaScript DOM e Labs 3D) - SENAI Morvan Figueiredo - Prof. Johnny Braga de Oliveira",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Prof. Johnny Braga de Oliveira",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisão de Semestre · Desenvolvimento de Sistemas · SENAI Morvan Figueiredo</title>
+  <meta name="description" content="Atividade de revisão: HTML, CSS, JavaScript, functions e DOM. Prof. Johnny Braga de Oliveira.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="topo">
+    <div class="topo__inner">
+      <a href="#inicio" class="marca">
+        <span class="marca__tag">&lt;/&gt;</span>
+        <span>Revisão <strong>DS</strong></span>
+      </a>
+      <nav class="menu" aria-label="Seções da atividade">
+        <a href="#contexto">Contexto</a>
+        <a href="#missoes">Missões</a>
+        <a href="#starter">Código base</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#saidas">Qual a saída?</a>
+        <a href="#funcoes">Lab Functions</a>
+        <a href="#dom">Lab DOM</a>
+        <a href="#lab3d">Labs 3D</a>
+        <a href="#rubrica">Avaliação</a>
+        <a href="#progresso">Meu progresso</a>
+      </nav>
+      <button class="btn-tema" id="btnTema" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema (usa classList.toggle!)">◐</button>
+    </div>
+    <div class="barra-progresso" aria-hidden="true"><span id="barraGlobal"></span></div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="inicio">
+      <div class="hero__grid">
+        <div>
+          <p class="sobretitulo">Escola SENAI Morvan Figueiredo · Técnico em Desenvolvimento de Sistemas</p>
+          <h1>Revisão de Semestre:<br><span class="destaque">HTML + CSS + JavaScript&nbsp;DOM</span></h1>
+          <p class="hero__lead">Você e sua equipe foram contratados para construir a landing page de uma startup de verdade (ou quase). No caminho, vão revisar tudo do semestre: estrutura semântica, layout moderno, <code>functions</code> e manipulação do DOM.</p>
+          <div class="hero__acoes">
+            <a href="#contexto" class="btn btn--primario">Ler o briefing</a>
+            <a href="#quiz" class="btn btn--fantasma">Ir para os autotestes</a>
+          </div>
+          <p class="hero__prof">Prof. <strong>Johnny Braga de Oliveira</strong></p>
+        </div>
+        <div class="hero__terminal" aria-label="Exemplo de código">
+          <div class="terminal__barra"><i></i><i></i><i></i><span>script.js</span></div>
+<pre class="terminal__codigo"><code id="heroCode">// a missão em 6 linhas
+function calcularValor(horas, tipo) {
+  const preco = { urbana: 12, eletrica: 20, cargo: 25 };
+  let total = horas * preco[tipo];
+  if (horas > 5) total *= 0.9;
+  return total;
+}
+
+document.querySelector('#calcular')
+  .addEventListener('click', mostrarResultado);</code></pre>
+        </div>
+      </div>
+      <ul class="hero__stats">
+        <li><strong id="statQuiz">0</strong><span>questões de quiz</span></li>
+        <li><strong id="statSaidas">0</strong><span>desafios "qual a saída?"</span></li>
+        <li><strong id="statFuncoes">0</strong><span>functions com teste automático</span></li>
+        <li><strong id="statDom">0</strong><span>desafios de DOM</span></li>
+        <li><strong id="stat3d">0</strong><span>laboratórios práticos em 3D</span></li>
+      </ul>
+    </section>
+
+    <!-- ===================== CONTEXTO ===================== -->
+    <section class="secao" id="contexto">
+      <header class="secao__cab">
+        <span class="secao__num">01</span>
+        <div>
+          <h2>O briefing do cliente</h2>
+          <p>Leia com atenção: tudo o que o cliente pede vira requisito da sua página.</p>
+        </div>
+      </header>
+
+      <div class="briefing">
+        <article class="cartao cartao--email">
+          <div class="email__cab">
+            <p><b>De:</b> Marina Okada &lt;marina@ecobikesp.com.br&gt;</p>
+            <p><b>Para:</b> Morvan Dev Studio (equipe de vocês)</p>
+            <p><b>Assunto:</b> Precisamos de um site até o fim do semestre!</p>
+          </div>
+          <div class="email__corpo">
+            <p>Olá, equipe!</p>
+            <p>Somos a <strong>EcoBike SP</strong>, uma startup que aluga bicicletas urbanas, elétricas e cargo por hora, com estações espalhadas pela cidade. Hoje dependemos só do Instagram e os clientes vivem perguntando “quanto vou pagar?” e “como reservo?”.</p>
+            <p>Queremos uma <strong>landing page moderna</strong>, que funcione bem no celular, com:</p>
+            <ul>
+              <li>Uma apresentação da marca e um menu de navegação;</li>
+              <li>Os nossos <strong>3 planos</strong> (Urbana, Elétrica e Cargo) em cards;</li>
+              <li>Um <strong>simulador de preço</strong>: a pessoa digita as horas, escolhe a bike e vê o valor na hora;</li>
+              <li>Uma <strong>lista de pré-reservas</strong>: digita o nome, clica e o nome aparece na lista (com opção de remover);</li>
+              <li>Um botão de <strong>modo escuro</strong> — nossos clientes pedalam à noite também 🌙</li>
+            </ul>
+            <p>Tabela de preços: Urbana <b>R$ 12/h</b>, Elétrica <b>R$ 20/h</b>, Cargo <b>R$ 25/h</b>. Acima de 5 horas, damos <b>10% de desconto</b>.</p>
+            <p>Contamos com vocês!<br>Marina — CEO da EcoBike SP</p>
+          </div>
+        </article>
+
+        <aside class="cartao cartao--info">
+          <h3>Seu papel</h3>
+          <p>Vocês são a <strong>Morvan Dev Studio</strong>, a fábrica de software da turma. Cada aluno entrega a sua própria versão da página, publicada no <strong>GitHub Pages</strong>.</p>
+          <h3>O que você vai revisar</h3>
+          <ul class="tags">
+            <li>HTML semântico</li><li>Formulários</li><li>Variáveis CSS</li><li>Flexbox</li><li>Grid</li><li>Media queries</li><li>function / return</li><li>Parâmetros</li><li>Arrow functions</li><li>querySelector</li><li>addEventListener</li><li>createElement</li><li>classList</li><li>textContent</li><li>Arrays</li>
+          </ul>
+          <h3>Formato</h3>
+          <dl class="lista-def">
+            <dt>Modalidade</dt><dd>Individual (pode discutir em dupla)</dd>
+            <dt>Entrega</dt><dd>Link do repositório + link do GitHub Pages</dd>
+            <dt>Antes de entregar</dt><dd>Faça todos os autotestes desta página</dd>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== MISSÕES ===================== -->
+    <section class="secao" id="missoes">
+      <header class="secao__cab">
+        <span class="secao__num">02</span>
+        <div>
+          <h2>Missões (requisitos da entrega)</h2>
+          <p>Marque cada item quando concluir. Seu progresso fica salvo neste navegador.</p>
+        </div>
+      </header>
+      <div class="missoes" id="listaMissoes"><!-- gerado por JS --></div>
+    </section>
+
+    <!-- ===================== STARTER ===================== -->
+    <section class="secao" id="starter">
+      <header class="secao__cab">
+        <span class="secao__num">03</span>
+        <div>
+          <h2>Código base (starter)</h2>
+          <p>Baixe os três arquivos, coloque na mesma pasta e complete os <code>TODO</code>. A estrutura de pastas do seu repositório deve ficar assim:</p>
+        </div>
+      </header>
+      <div class="starter">
+<pre class="arvore">ecobike-sp/
+├── index.html
+├── style.css
+└── script.js</pre>
+        <div class="abas" role="tablist" id="abasStarter"></div>
+        <div class="codigo-box">
+          <div class="codigo-box__acoes">
+            <button class="btn btn--mini" id="btnCopiarStarter" type="button">Copiar</button>
+            <button class="btn btn--mini btn--primario" id="btnBaixarStarter" type="button">Baixar arquivo</button>
+          </div>
+          <pre class="codigo"><code id="codigoStarter"></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUIZ ===================== -->
+    <section class="secao" id="quiz">
+      <header class="secao__cab">
+        <span class="secao__num">04</span>
+        <div>
+          <h2>Autoteste 1 · Quiz conceitual</h2>
+          <p>Responda e veja a explicação na hora. Filtre por assunto ou embaralhe para treinar de novo.</p>
+        </div>
+      </header>
+      <div class="painel-ferramentas">
+        <div class="filtros" id="filtrosQuiz"></div>
+        <div class="placar">Acertos: <strong id="placarQuiz">0 / 0</strong></div>
+        <button class="btn btn--mini" id="btnEmbaralhar" type="button">Embaralhar</button>
+        <button class="btn btn--mini" id="btnReiniciarQuiz" type="button">Reiniciar</button>
+      </div>
+      <div class="quiz" id="listaQuiz"></div>
+    </section>
+
+    <!-- ===================== QUAL A SAÍDA ===================== -->
+    <section class="secao" id="saidas">
+      <header class="secao__cab">
+        <span class="secao__num">05</span>
+        <div>
+          <h2>Autoteste 2 · Qual a saída do código?</h2>
+          <p>Leia o código <strong>sem executar</strong>, escreva exatamente o que aparece no console (uma linha por <code>console.log</code>) e clique em <em>Conferir</em>. Depois, use <em>Executar</em> para ver o resultado real.</p>
+        </div>
+      </header>
+      <div class="painel-ferramentas">
+        <div class="placar">Acertos: <strong id="placarSaidas">0 / 0</strong></div>
+      </div>
+      <div class="saidas" id="listaSaidas"></div>
+    </section>
+
+    <!-- ===================== LAB FUNCTIONS ===================== -->
+    <section class="secao" id="funcoes">
+      <header class="secao__cab">
+        <span class="secao__num">06</span>
+        <div>
+          <h2>Autoteste 3 · Laboratório de Functions</h2>
+          <p>Escreva a função no editor e clique em <em>Rodar testes</em>. Os testes chamam a sua função com vários valores e comparam o <code>return</code> com o esperado. Várias delas você vai reaproveitar no projeto da EcoBike!</p>
+        </div>
+      </header>
+      <div class="lab">
+        <aside class="lab__lista" id="listaFuncoes" aria-label="Desafios de functions"></aside>
+        <div class="lab__area" id="areaFuncao"></div>
+      </div>
+    </section>
+
+    <!-- ===================== LAB DOM ===================== -->
+    <section class="secao" id="dom">
+      <header class="secao__cab">
+        <span class="secao__num">07</span>
+        <div>
+          <h2>Autoteste 4 · Laboratório de DOM</h2>
+          <p>Cada desafio tem um HTML pronto. Escreva o JavaScript que manipula a página, clique em <em>Executar e verificar</em> e veja a prévia ao vivo. O verificador clica nos botões e confere o resultado por você.</p>
+        </div>
+      </header>
+      <div class="lab">
+        <aside class="lab__lista" id="listaDom" aria-label="Desafios de DOM"></aside>
+        <div class="lab__area" id="areaDom"></div>
+      </div>
+    </section>
+
+    <!-- ===================== LABS 3D ===================== -->
+    <section class="secao" id="lab3d">
+      <header class="secao__cab">
+        <span class="secao__num">08</span>
+        <div>
+          <h2>Autoteste 5 · Laboratórios práticos em 3D</h2>
+          <p>A estação da EcoBike SP em 3D reage ao seu código. Cada laboratório tem um <b>bug</b> ou um <b>TODO</b>. Primeiro <b>registre a previsão</b> das saídas do console, depois corrija, execute e compare: <em>sua previsão × saída real × esperado</em>.</p>
+        </div>
+      </header>
+      <div class="abas3d" id="abas3d" role="tablist" aria-label="Laboratórios 3D"></div>
+      <div class="lab3d">
+        <div class="palco">
+          <div class="palco__canvas" id="palco3d"></div>
+          <div class="palco__hud">
+            <span id="hud3d">Laboratório 3D</span>
+            <span class="palco__botoes">
+              <button type="button" id="btnCamera3d" title="Recentralizar câmera">⟲</button>
+              <button type="button" id="btnTela3d" title="Tela cheia">⛶</button>
+            </span>
+          </div>
+          <div class="palco__ajuda">🖱 arraste para girar · role para aproximar · botão direito para mover</div>
+          <div class="palco__carregando" id="carregando3d">Carregando cena 3D…</div>
+        </div>
+        <div class="lab3d__painel" id="painel3d"></div>
+      </div>
+    </section>
+
+    <!-- ===================== RUBRICA ===================== -->
+    <section class="secao" id="rubrica">
+      <header class="secao__cab">
+        <span class="secao__num">09</span>
+        <div>
+          <h2>Critérios de avaliação</h2>
+          <p>Nota total: 10 pontos. Os autotestes não valem nota, mas são o melhor jeito de chegar preparado.</p>
+        </div>
+      </header>
+      <div class="tabela-wrap">
+        <table class="tabela">
+          <thead>
+            <tr><th>Critério</th><th>O que será observado</th><th>Pontos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>HTML semântico</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code>; <code>label</code> ligado aos inputs; <code>alt</code> nas imagens; hierarquia de títulos correta.</td><td>1,5</td></tr>
+            <tr><td>CSS e layout</td><td>Variáveis em <code>:root</code>; menu com Flexbox; cards com Grid; <code>hover</code>/<code>transition</code>; visual coerente com a marca.</td><td>2,0</td></tr>
+            <tr><td>Responsividade</td><td>Pelo menos uma <code>@media</code>; nada “vaza” na tela do celular (360px).</td><td>1,0</td></tr>
+            <tr><td>Functions</td><td><code>calcularValor</code> e <code>formatarMoeda</code> com parâmetros e <code>return</code>; funções pequenas, com nomes claros.</td><td>2,0</td></tr>
+            <tr><td>DOM e eventos</td><td>Simulador funcionando; lista de reservas com adicionar/remover e contador; modo escuro com <code>classList.toggle</code>.</td><td>2,5</td></tr>
+            <tr><td>Publicação e organização</td><td>GitHub Pages no ar; código indentado; commits com mensagens descritivas.</td><td>1,0</td></tr>
+            <tr class="tabela__bonus"><td>Bônus (+1,0)</td><td>Reservas salvas no <code>localStorage</code>, filtro de planos, validação extra ou animações bem usadas.</td><td>+1,0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="entrega">
+        <article class="cartao">
+          <h3>Como publicar no GitHub Pages</h3>
+          <ol class="passos">
+            <li>Crie um repositório público chamado <code>ecobike-sp</code>.</li>
+            <li>Envie <code>index.html</code>, <code>style.css</code> e <code>script.js</code> (botão <em>Add file → Upload files</em> ou <code>git push</code>).</li>
+            <li>Vá em <em>Settings → Pages</em>, escolha <em>Deploy from a branch</em>, branch <code>main</code>, pasta <code>/ (root)</code>, e salve.</li>
+            <li>Aguarde 1–2 minutos. O link fica: <code>https://SEU-USUARIO.github.io/ecobike-sp/</code></li>
+          </ol>
+<pre class="codigo codigo--curto"><code>git init
+git add .
+git commit -m "feat: landing page EcoBike SP"
+git branch -M main
+git remote add origin https://github.com/SEU-USUARIO/ecobike-sp.git
+git push -u origin main</code></pre>
+        </article>
+        <article class="cartao">
+          <h3>Checklist final antes de entregar</h3>
+          <ul class="check-final">
+            <li>Abri o site pelo celular e está legível.</li>
+            <li>O console (F12) não mostra erros vermelhos.</li>
+            <li>O simulador mostra <b>R$ 60,00</b> para 3h de Elétrica.</li>
+            <li>O simulador mostra <b>R$ 64,80</b> para 6h de Urbana.</li>
+            <li>Com horas vazias ou 0, aparece uma mensagem de erro.</li>
+            <li>Consigo adicionar e remover reservas, e o contador atualiza.</li>
+            <li>Fiz os 5 autotestes (incluindo os labs 3D) e gerei o meu relatório de progresso.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== PROGRESSO ===================== -->
+    <section class="secao" id="progresso">
+      <header class="secao__cab">
+        <span class="secao__num">10</span>
+        <div>
+          <h2>Meu progresso</h2>
+          <p>Preencha seus dados e gere o relatório para enviar junto com a entrega (ou mostrar ao professor).</p>
+        </div>
+      </header>
+      <div class="progresso">
+        <form class="cartao form-aluno" id="formAluno">
+          <label for="alunoNome">Nome completo</label>
+          <input id="alunoNome" type="text" placeholder="Ex.: Ana Souza" autocomplete="name">
+          <label for="alunoTurma">Turma</label>
+          <input id="alunoTurma" type="text" placeholder="Ex.: 2DS-A">
+          <label for="alunoLink">Link do GitHub Pages</label>
+          <input id="alunoLink" type="url" placeholder="https://usuario.github.io/ecobike-sp/">
+          <div class="form-aluno__acoes">
+            <button class="btn btn--primario" type="submit">Gerar relatório</button>
+            <button class="btn btn--fantasma" type="button" id="btnZerar">Zerar progresso</button>
+          </div>
+        </form>
+        <div class="cartao medidores" id="medidores"></div>
+      </div>
+      <div class="relatorio" id="relatorio" hidden>
+        <pre id="relatorioTexto"></pre>
+        <button class="btn btn--mini btn--primario" id="btnCopiarRelatorio" type="button">Copiar relatório</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><strong>Escola SENAI Morvan Figueiredo</strong> · Curso Técnico em Desenvolvimento de Sistemas</p>
+    <p>Atividade de revisão de semestre elaborada pelo Prof. Johnny Braga de Oliveira</p>
+    <p class="rodape__nota">EcoBike SP e Morvan Dev Studio são nomes fictícios criados para fins didáticos.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="importmap">
+    { "imports": {
+        "three": "./js/vendor/three.module.min.js",
+        "three/addons/": "./js/vendor/addons/"
+    } }
+  </script>
+  <script src="js/dados.js"></script>
+  <script src="js/labs3d-dados.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/lab3d.js"></script>
+</body>
+</html>
